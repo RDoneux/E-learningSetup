@@ -1,5 +1,6 @@
 package setup;
 
+import java.awt.BorderLayout;
 import java.awt.Color;
 
 import javax.swing.JPanel;
@@ -13,6 +14,10 @@ public class SetUpCourse extends JPanel {
 
 	public SetUpCourse() {
 		setBackground(Color.GREEN);
+
+		setLayout(new BorderLayout());
+
+		add(new InstructorDisplay(), BorderLayout.CENTER);
 	}
 
 }

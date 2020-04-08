@@ -16,7 +16,7 @@ public class Frame {
 	public Frame() {
 
 		frame = new JFrame();
-		frame.setSize(new Dimension(500, 700));
+		frame.setSize(new Dimension(600, 700));
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.setVisible(true);
 		frame.setLocationRelativeTo(null);

@@ -17,7 +17,12 @@ public class SetUpCourse extends JPanel {
 
 		setLayout(new BorderLayout());
 
-		add(new InstructorDisplay(), BorderLayout.CENTER);
+		InstructorDisplay display = new InstructorDisplay();
+
+		add(new CourseSelector(display), BorderLayout.NORTH);
+		add(display, BorderLayout.CENTER);
+		add(new AddInstructor(display), BorderLayout.SOUTH);
+		
 	}
 
 }

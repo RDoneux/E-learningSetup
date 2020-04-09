@@ -44,6 +44,10 @@ public class Frame {
 
 	}
 
+	public static Dimension getWindowSize() {
+		return new Dimension(frame.getWidth(), frame.getHeight());
+	}
+
 	public static void main(String args[]) {
 
 		new Frame();

@@ -3,6 +3,7 @@ package setup;
 import java.awt.BorderLayout;
 import java.awt.Color;
 
+import javax.swing.BoxLayout;
 import javax.swing.JPanel;
 
 public class SetUpCourse extends JPanel {
@@ -19,7 +20,14 @@ public class SetUpCourse extends JPanel {
 
 		InstructorDisplay display = new InstructorDisplay();
 
-		add(new CourseSelector(display), BorderLayout.NORTH);
+		// title panel holds course selector and progress bar
+		JPanel titlePanel = new JPanel();
+		titlePanel.setLayout(new BoxLayout(titlePanel, 1));
+		
+		titlePanel.add(new CourseSelector(display), BorderLayout.CENTER);
+		titlePanel.add(new ProgressBar());
+
+		add(titlePanel, BorderLayout.NORTH);
 		add(display, BorderLayout.CENTER);
 		add(new AddInstructor(display), BorderLayout.SOUTH);
 		

@@ -1,8 +1,9 @@
 package mainmenu;
 
 import java.awt.Color;
+import java.awt.GridBagConstraints;
+import java.awt.GridBagLayout;
 
-import javax.swing.BoxLayout;
 import javax.swing.JPanel;
 
 import setup.SetUpButton;
@@ -17,7 +18,12 @@ public class MainMenu extends JPanel {
 	public MainMenu() {
 
 		setBackground(Color.WHITE);
-		setLayout(new BoxLayout(this, 1));
+		setLayout(new GridBagLayout());
+		
+		GridBagConstraints c = new GridBagConstraints();
+		
+		c.weightx = 1;
+		c.weighty = 1;
 		
 		add(new SetUpButton());
 

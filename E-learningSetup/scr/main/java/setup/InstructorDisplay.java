@@ -29,6 +29,7 @@ public class InstructorDisplay extends JPanel implements MouseListener {
 	private ArrayList<JLabel> items = new ArrayList<>();
 	private ArrayList<Component> spaces = new ArrayList<>();
 	private Font labelFont = new Font("lucida Console", Font.PLAIN, 16);
+	private JLabel success = new JLabel("");
 
 	public InstructorDisplay() {
 
@@ -37,9 +38,17 @@ public class InstructorDisplay extends JPanel implements MouseListener {
 
 		add(Box.createRigidArea(new Dimension(Short.MAX_VALUE, 20)));
 
+		success.setFont(labelFont);
+		success.setAlignmentX(JLabel.CENTER_ALIGNMENT);
+		add(success);
+
 	}
 
 	public void addItem(String item) {
+
+		if (!success.getText().equals("")) {
+			success.setText("");
+		}
 
 		Component space = Box.createRigidArea(new Dimension(Short.MAX_VALUE, 8));
 
@@ -65,43 +74,72 @@ public class InstructorDisplay extends JPanel implements MouseListener {
 
 		File generalFileLocation = new File(filePath + "\\" + date + " " + type);
 
-		if (!generalFileLocation.exists()) {
-			generalFileLocation.mkdirs();
-		}
-		// export the two general resources to course folder
-		exportResource("general/Attendance Sheet.docx", generalFileLocation, "Attendance Sheet");
-		exportResource("general/Issues Arising Form.docx", generalFileLocation, "Issues Arising");
+		Thread thread = new Thread(new Runnable() {
+			public void run() {
 
-		// go through each name. Create folder for that candidate and generate
-		// presentation feedback and random audit-based intervention assessment form.
-		Random r = new Random();
-		for (int i = 0; i < items.size(); i++) {
-			JLabel label = items.get(i);
-			
-			ProgressBar.update(i, items.size());
-			
-			File fileLocation = new File(filePath + "\\" + date + " " + type + "\\" + label.getText());
-			if (!fileLocation.exists()) {
-				fileLocation.mkdirs();
+				// display the progress bar and creating folders label
+				ProgressBar.update(0, items.size());
 
-				switch (type) {
-				case "Re-certification":
-					exportResource("presentation/Re-Certification - Presentation Feedback.docx", fileLocation,
-							label.getText() + " ~ Presentation Feedback");
-					exportResource("abass/" + Integer.valueOf(r.nextInt(11) + 1) + ".docx", fileLocation,
-							label.getText() + " ~ Audit-based Assessment");
-					break;
-				case "Assessment Day":
-					exportResource("presentation/Presentation Feedback.docx", fileLocation,
-							label.getText() + " ~ Presentation Feedback");
-					exportResource("abass/" + Integer.valueOf(r.nextInt(11) + 1) + ".docx", fileLocation,
-							label.getText() + " ~ Audit-based Assessment");
-					break;
-				default:
-					break;
+				if (!generalFileLocation.exists()) {
+					generalFileLocation.mkdirs();
 				}
+				// export the two general resources to course folder
+				exportResource("general/Attendance Sheet.docx", generalFileLocation, "Attendance Sheet");
+				exportResource("general/Issues Arising Form.docx", generalFileLocation, "Issues Arising");
+
+				// go through each name. Create folder for that candidate and generate
+				// presentation feedback and random audit-based intervention assessment form.
+				Random r = new Random();
+				for (int i = 0; i < items.size(); i++) {
+					JLabel label = items.get(i);
+
+					// update the progress bar
+					ProgressBar.update(i, items.size());
+
+					File fileLocation = new File(filePath + "\\" + date + " " + type + "\\" + label.getText());
+					if (!fileLocation.exists()) {
+						fileLocation.mkdirs();
+					}
+					switch (type) {
+					case "Re-certification":
+						exportResource("presentation/Re-Certification - Presentation Feedback.docx", fileLocation,
+								label.getText() + " ~ Presentation Feedback");
+						exportResource("abass/" + Integer.valueOf(r.nextInt(11) + 1) + ".docx", fileLocation,
+								label.getText() + " ~ Audit-based Assessment");
+						break;
+					case "Assessment Day":
+						exportResource("presentation/Presentation Feedback.docx", fileLocation,
+								label.getText() + " ~ Presentation Feedback");
+						exportResource("abass/" + Integer.valueOf(r.nextInt(11) + 1) + ".docx", fileLocation,
+								label.getText() + " ~ Audit-based Assessment");
+						break;
+					default:
+						break;
+					}
+					label.setForeground(Color.GREEN);
+					label.setText(label.getText() + " ~ Folder created");
+				}
+
+				// reset the display
+				for (JLabel label : items) {
+					remove(label);
+				}
+				for (Component comp : spaces) {
+					remove(comp);
+				}
+				items.clear();
+				spaces.clear();
+				
+				ProgressBar.update(items.size(), items.size());
+				success.setText("Folders created successfully");
+
+				revalidate();
+				repaint();
+
 			}
-		}
+		});
+		thread.start();
+
 	}
 
 	private void exportResource(String resLocation, File destination, String docName) {

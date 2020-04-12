@@ -22,7 +22,7 @@ public class ProgressBar extends JPanel {
 		progBar = new JProgressBar();
 		progBar.setVisible(false);
 		progBar.setPreferredSize(new Dimension((int) Frame.getWindowSize().getWidth() / 2, 20));
-
+		progBar.setStringPainted(true);
 		add(progBar);
 	}
 
@@ -30,9 +30,10 @@ public class ProgressBar extends JPanel {
 		if (!progBar.isVisible()) {
 			progBar.setVisible(true);
 		}
+		progBar.setString("Creating Folders");
 		progBar.setValue(current);
 		progBar.setMaximum(max);
-		if (current == max - 1) {
+		if (current == max) {
 			progBar.setVisible(false);
 		}
 	}

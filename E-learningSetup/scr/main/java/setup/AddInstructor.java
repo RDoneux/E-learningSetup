@@ -17,6 +17,8 @@ import javax.swing.JButton;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 
+import mainmenu.MainMenuButton;
+
 public class AddInstructor extends JPanel implements KeyListener, MouseListener, ActionListener {
 
 	/**
@@ -52,7 +54,7 @@ public class AddInstructor extends JPanel implements KeyListener, MouseListener,
 
 		GridBagConstraints c = new GridBagConstraints();
 
-		c.weightx = 1;
+		c.weightx = 0.6;
 		c.weighty = 1;
 		c.gridx = 0;
 		c.anchor = GridBagConstraints.EAST;
@@ -62,6 +64,10 @@ public class AddInstructor extends JPanel implements KeyListener, MouseListener,
 		c.gridx = 2;
 		c.anchor = GridBagConstraints.WEST;
 		add(button, c);
+
+		c.gridx = 3;
+		c.weightx = 0.4;
+		add(new MainMenuButton(), c);
 
 	}
 

@@ -1,4 +1,4 @@
-package setup;
+package mainmenu;
 
 import java.awt.Dimension;
 import java.awt.Font;
@@ -7,20 +7,17 @@ import java.awt.event.ActionListener;
 
 import javax.swing.JButton;
 
-import display.Frame;
-
-public class SetUpButton extends JButton implements ActionListener {
+public class Exit extends JButton implements ActionListener {
 
 	/**
 	 * 
 	 */
-	private static final long serialVersionUID = -4888899860224984222L;
-
-	public SetUpButton() {
+	private static final long serialVersionUID = -4530679477103609334L;
+	public Exit() {
 
 		Font font = new Font("lucida Console", Font.PLAIN, 16);
 
-		setText("Set up e-learning course");
+		setText("Exit");
 		setFont(font);
 		setMinimumSize(new Dimension(280, 40));
 		setPreferredSize(new Dimension(280, 40));
@@ -33,9 +30,7 @@ public class SetUpButton extends JButton implements ActionListener {
 
 	@Override
 	public void actionPerformed(ActionEvent e) {
-
-		Frame.addPanel(new SetUpCourse());
-
+		System.exit(0);
 	}
 
 }

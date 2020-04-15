@@ -19,13 +19,16 @@ public class MainMenu extends JPanel {
 
 		setBackground(Color.WHITE);
 		setLayout(new GridBagLayout());
-		
+
 		GridBagConstraints c = new GridBagConstraints();
-		
+
 		c.weightx = 1;
 		c.weighty = 1;
+
+		add(new SetUpButton(), c);
 		
-		add(new SetUpButton());
+		c.gridy = 1;
+		add(new Exit(),c );
 
 	}
 

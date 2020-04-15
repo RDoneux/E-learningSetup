@@ -6,6 +6,7 @@ import java.awt.GridBagLayout;
 
 import javax.swing.JPanel;
 
+import settings.SettingsButton;
 import setup.SetUpButton;
 
 public class MainMenu extends JPanel {
@@ -24,11 +25,14 @@ public class MainMenu extends JPanel {
 
 		c.weightx = 1;
 		c.weighty = 1;
-
 		add(new SetUpButton(), c);
-		
+
 		c.gridy = 1;
-		add(new Exit(),c );
+		add(new SettingsButton(), c);
+
+		c.gridy = 2;
+		add(new Exit(), c);
+
 
 	}
 

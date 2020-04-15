@@ -2,6 +2,7 @@ package display;
 
 import java.awt.BorderLayout;
 import java.awt.Dimension;
+import java.awt.Toolkit;
 
 import javax.swing.JFrame;
 import javax.swing.JPanel;
@@ -13,10 +14,14 @@ public class Frame {
 	private static JFrame frame;
 	private static JPanel currentPanel;
 
+	private static Dimension SCREEN_SIZE;
+
 	public Frame() {
 
+		SCREEN_SIZE = Toolkit.getDefaultToolkit().getScreenSize();
+
 		frame = new JFrame();
-		frame.setSize(new Dimension(600, 700));
+		frame.setSize(new Dimension(550, SCREEN_SIZE.height - 100));
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.setVisible(true);
 		frame.setLocationRelativeTo(null);

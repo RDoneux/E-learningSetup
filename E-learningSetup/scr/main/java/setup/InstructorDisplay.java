@@ -20,6 +20,8 @@ import javax.swing.BoxLayout;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 
+import settings.Constants;
+
 public class InstructorDisplay extends JPanel implements MouseListener {
 
 	/**
@@ -69,7 +71,7 @@ public class InstructorDisplay extends JPanel implements MouseListener {
 
 		String stringDate[] = date.split("-");
 
-		String filePath = "L:\\COURSE STORE\\Totara Courses " + stringDate[2] + "\\" + stringDate[1] + " "
+		String filePath =  Constants.masterFile + stringDate[2] + "\\" + stringDate[1] + " "
 				+ stringDate[2];
 
 		File generalFileLocation = new File(filePath + "\\" + date + " " + type);

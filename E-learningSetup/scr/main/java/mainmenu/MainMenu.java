@@ -24,15 +24,19 @@ public class MainMenu extends JPanel {
 		GridBagConstraints c = new GridBagConstraints();
 
 		c.weightx = 1;
-		c.weighty = 1;
+		c.weighty = 0.4;
+		c.anchor = GridBagConstraints.SOUTH;
 		add(new SetUpButton(), c);
 
 		c.gridy = 1;
+		c.weighty = 0.2;
+		c.anchor = GridBagConstraints.CENTER;
 		add(new SettingsButton(), c);
 
 		c.gridy = 2;
+		c.weighty = 0.4;
+		c.anchor = GridBagConstraints.NORTH;
 		add(new Exit(), c);
-
 
 	}
 

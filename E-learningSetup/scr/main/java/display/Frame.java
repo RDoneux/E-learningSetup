@@ -8,6 +8,7 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 
 import mainmenu.MainMenu;
+import settings.Constants;
 
 public class Frame {
 
@@ -55,6 +56,7 @@ public class Frame {
 
 	public static void main(String args[]) {
 
+		Constants.loadSettings();
 		new Frame();
 
 	}

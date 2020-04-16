@@ -10,7 +10,7 @@ import java.util.Scanner;
 public class Constants {
 
 	public static String font = "lucida Console";
-	public static String masterFile = "L:\\COURSE STORE\\Totara Courses";
+	public static String masterFile = "L:\\COURSE STORE\\Totara Courses ";
 
 	private static File file = new File("settings/constants.txt");
 

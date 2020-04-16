@@ -71,8 +71,7 @@ public class InstructorDisplay extends JPanel implements MouseListener {
 
 		String stringDate[] = date.split("-");
 
-		String filePath =  Constants.masterFile + stringDate[2] + "\\" + stringDate[1] + " "
-				+ stringDate[2];
+		String filePath = Constants.masterFile + " " + stringDate[2] + "\\" + stringDate[1] + " " + stringDate[2];
 
 		File generalFileLocation = new File(filePath + "\\" + date + " " + type);
 
@@ -106,14 +105,18 @@ public class InstructorDisplay extends JPanel implements MouseListener {
 					case "Re-certification":
 						exportResource("presentation/Re-Certification - Presentation Feedback.docx", fileLocation,
 								label.getText() + " ~ Presentation Feedback");
-						exportResource("abass/" + Integer.valueOf(r.nextInt(11) + 1) + ".docx", fileLocation,
+						exportResource("abass/" + Integer.valueOf(r.nextInt(6) + 1) + ".docx", fileLocation,
 								label.getText() + " ~ Audit-based Assessment");
+						exportResource("record/Blended Learning Record Sheet.docx", fileLocation,
+								label.getText() + " ~ Record Sheet");
 						break;
 					case "Assessment Day":
 						exportResource("presentation/Presentation Feedback.docx", fileLocation,
 								label.getText() + " ~ Presentation Feedback");
-						exportResource("abass/" + Integer.valueOf(r.nextInt(11) + 1) + ".docx", fileLocation,
+						exportResource("abass/" + Integer.valueOf(r.nextInt(6) + 1) + ".docx", fileLocation,
 								label.getText() + " ~ Audit-based Assessment");
+						exportResource("record/Blended Learning Record Sheet.docx", fileLocation,
+								label.getText() + " ~ Record Sheet");
 						break;
 					default:
 						break;
@@ -131,7 +134,7 @@ public class InstructorDisplay extends JPanel implements MouseListener {
 				}
 				items.clear();
 				spaces.clear();
-				
+
 				ProgressBar.update(items.size(), items.size());
 				success.setText("Folders created successfully");
 

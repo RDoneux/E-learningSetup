@@ -2,8 +2,14 @@ package display;
 
 import java.awt.BorderLayout;
 import java.awt.Dimension;
+import java.awt.Image;
 import java.awt.Toolkit;
+import java.awt.Window;
+import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
 
+import javax.imageio.ImageIO;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 
@@ -19,6 +25,8 @@ public class Frame {
 
 	public Frame() {
 
+
+		
 		SCREEN_SIZE = Toolkit.getDefaultToolkit().getScreenSize();
 
 		frame = new JFrame();
@@ -29,6 +37,13 @@ public class Frame {
 		frame.setTitle("E-learning setup");
 		frame.setLayout(new BorderLayout());
 
+		try {
+			frame.setIconImage(ImageIO.read(this.getClass().getResourceAsStream("/images/file.png")));
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
 		addPanel(new MainMenu());
 		frame.add(new Signature(), BorderLayout.SOUTH);
 
@@ -56,6 +71,8 @@ public class Frame {
 
 	public static void main(String args[]) {
 
+
+		
 		Constants.loadSettings();
 		new Frame();
 

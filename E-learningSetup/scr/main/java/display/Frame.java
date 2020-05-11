@@ -40,7 +40,6 @@ public class Frame {
 		try {
 			frame.setIconImage(ImageIO.read(this.getClass().getResourceAsStream("/images/file.png")));
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		

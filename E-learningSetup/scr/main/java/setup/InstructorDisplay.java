@@ -101,6 +101,7 @@ public class InstructorDisplay extends JPanel implements MouseListener {
 					if (!fileLocation.exists()) {
 						fileLocation.mkdirs();
 					}
+
 					switch (type) {
 					case "Re-certification":
 						exportResource("presentation/Re-Certification - Presentation Feedback.docx", fileLocation,
@@ -114,6 +115,14 @@ public class InstructorDisplay extends JPanel implements MouseListener {
 						exportResource("presentation/Presentation Feedback.docx", fileLocation,
 								label.getText() + " ~ Presentation Feedback");
 						exportResource("abass/" + Integer.valueOf(r.nextInt(6) + 1) + ".docx", fileLocation,
+								label.getText() + " ~ Audit-based Assessment");
+						exportResource("record/Blended Learning Record Sheet.docx", fileLocation,
+								label.getText() + " ~ Record Sheet");
+						break;
+					case "Instructor - (M1)":
+						exportResource("presentation/Instructor Presentation feedback (day 1).docx", fileLocation,
+								label.getText() + " ~ Presentation Feedback");
+						exportResource("pi/Proactive Working Practices.docx", fileLocation,
 								label.getText() + " ~ Audit-based Assessment");
 						exportResource("record/Blended Learning Record Sheet.docx", fileLocation,
 								label.getText() + " ~ Record Sheet");

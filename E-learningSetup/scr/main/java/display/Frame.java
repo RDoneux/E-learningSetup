@@ -37,11 +37,11 @@ public class Frame {
 		frame.setTitle("E-learning setup");
 		frame.setLayout(new BorderLayout());
 
-		try {
-			frame.setIconImage(ImageIO.read(this.getClass().getResourceAsStream("/images/file.png")));
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
+//		try {
+//			frame.setIconImage(ImageIO.read(this.getClass().getResourceAsStream("/images/file.png")));
+//		} catch (IOException e) {
+//			e.printStackTrace();
+//		}
 		
 		addPanel(new MainMenu());
 		frame.add(new Signature(), BorderLayout.SOUTH);

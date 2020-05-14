@@ -160,7 +160,7 @@ public class InstructorDisplay extends JPanel implements MouseListener {
 	}
 
 	private void exportResource(String resLocation, File destination, String docName) {
-		
+
 		try {
 			FileUtils.copyURLToFile(this.getClass().getClassLoader().getResource(resLocation),
 					new File(destination.getAbsolutePath() + "//" + docName + ".docx"));

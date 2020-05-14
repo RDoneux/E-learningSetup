@@ -20,6 +20,8 @@ import javax.swing.BoxLayout;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 
+import org.apache.commons.io.FileUtils;
+
 import settings.Constants;
 
 public class InstructorDisplay extends JPanel implements MouseListener {
@@ -71,7 +73,8 @@ public class InstructorDisplay extends JPanel implements MouseListener {
 
 		String stringDate[] = date.split("-");
 
-		String filePath = Constants.masterFile + " " + stringDate[2] + "\\" + stringDate[1] + " " + stringDate[2];
+		String filePath = "L:\\COURSE STORE\\Totara Courses" + " " + stringDate[2] + "\\" + stringDate[1] + " "
+				+ stringDate[2];
 
 		File generalFileLocation = new File(filePath + "\\" + date + " " + type);
 
@@ -124,7 +127,7 @@ public class InstructorDisplay extends JPanel implements MouseListener {
 								label.getText() + " ~ Presentation Feedback");
 						exportResource("pi/Proactive Working Practices.docx", fileLocation,
 								label.getText() + " ~ Audit-based Assessment");
-						exportResource("record/Blended Learning Record Sheet.docx", fileLocation,
+						exportResource("record/Blended Learning Record Sheet (Instructor Module 1).docx", fileLocation,
 								label.getText() + " ~ Record Sheet");
 						break;
 					default:
@@ -157,13 +160,24 @@ public class InstructorDisplay extends JPanel implements MouseListener {
 	}
 
 	private void exportResource(String resLocation, File destination, String docName) {
+		
 		try {
-			Files.copy(Paths.get(this.getClass().getClassLoader().getResource(resLocation).toURI()),
-					Paths.get(destination.getAbsolutePath() + "//" + docName + ".docx"),
-					StandardCopyOption.REPLACE_EXISTING);
-		} catch (IOException | URISyntaxException ex) {
-			ex.printStackTrace();
+			FileUtils.copyURLToFile(this.getClass().getClassLoader().getResource(resLocation),
+					new File(destination.getAbsolutePath() + "//" + docName + ".docx"));
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
 		}
+//		try {
+//
+//
+//
+//			Files.copy(Paths.get(this.getClass().getClassLoader().getResource(resLocation).toURI()),
+//					Paths.get(destination.getAbsolutePath() + "//" + docName + ".docx"),
+//					StandardCopyOption.REPLACE_EXISTING);
+//		} catch (IOException | URISyntaxException ex) {
+//			ex.printStackTrace();
+//		}
 	}
 
 	public ArrayList<JLabel> getItems() {

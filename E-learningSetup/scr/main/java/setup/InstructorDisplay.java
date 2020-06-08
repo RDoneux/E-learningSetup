@@ -130,6 +130,10 @@ public class InstructorDisplay extends JPanel implements MouseListener {
 						exportResource("record/Blended Learning Record Sheet (Instructor Module 1).docx", fileLocation,
 								label.getText() + " ~ Record Sheet");
 						break;
+					case "Instructor - (M2)":
+						exportResource("record/Blended Learning Record Sheet (Instructor Module 2).docx", fileLocation,
+								label.getText() + " ~ Record Sheet");
+						break;
 					default:
 						break;
 					}

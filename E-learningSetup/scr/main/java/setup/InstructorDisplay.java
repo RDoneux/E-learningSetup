@@ -105,20 +105,24 @@ public class InstructorDisplay extends JPanel implements MouseListener {
 						fileLocation.mkdirs();
 					}
 
+					int rand;
 					switch (type) {
+
 					case "Re-certification":
+						rand = r.nextInt(7) + 1;
 						exportResource("presentation/Re-Certification - Presentation Feedback.docx", fileLocation,
 								label.getText() + " ~ Presentation Feedback");
-						exportResource("abass/" + Integer.valueOf(r.nextInt(6) + 1) + ".docx", fileLocation,
-								label.getText() + " ~ Audit-based Assessment");
+						exportResource("abass/" + rand + ".docx", fileLocation,
+								label.getText() + " ~ Audit-based Assessment (" + getAuditName(rand) + ")");
 						exportResource("record/Blended Learning Record Sheet.docx", fileLocation,
 								label.getText() + " ~ Record Sheet");
 						break;
 					case "Assessment Day":
+						rand = r.nextInt(7) + 1;
 						exportResource("presentation/Presentation Feedback.docx", fileLocation,
 								label.getText() + " ~ Presentation Feedback");
-						exportResource("abass/" + Integer.valueOf(r.nextInt(6) + 1) + ".docx", fileLocation,
-								label.getText() + " ~ Audit-based Assessment");
+						exportResource("abass/" + rand + ".docx", fileLocation,
+								label.getText() + " ~ Audit-based Assessment (" + getAuditName(rand) + ")");
 						exportResource("record/Blended Learning Record Sheet.docx", fileLocation,
 								label.getText() + " ~ Record Sheet");
 						break;
@@ -161,6 +165,27 @@ public class InstructorDisplay extends JPanel implements MouseListener {
 		});
 		thread.start();
 
+	}
+
+	private String getAuditName(int i) {
+		switch (i) {
+		case 1:
+			return "S";
+		case 2:
+			return "PPS1";
+		case 3:
+			return "TS";
+		case 4:
+			return "FD";
+		case 5:
+			return "FAP";
+		case 6:
+			return "FCR";
+		case 7:
+			return "OPE";
+		default:
+			return null;
+		}
 	}
 
 	private void exportResource(String resLocation, File destination, String docName) {

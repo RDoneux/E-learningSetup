@@ -88,12 +88,13 @@ public class InstructorDisplay extends JPanel implements MouseListener {
 					generalFileLocation.mkdirs();
 				}
 				// export the two general resources to course folder
-				exportResource("general/Attendance Sheet.docx", generalFileLocation, "Attendance Sheet");
+				// exportResource("general/Attendance Sheet.docx", generalFileLocation, "Attendance Sheet"); no longer required after move to face to face training
 				exportResource("general/Issues Arising Form.docx", generalFileLocation, "Issues Arising");
+
+				createPresentationFolder(generalFileLocation.getAbsolutePath());
 
 				// go through each name. Create folder for that candidate and generate
 				// presentation feedback and random audit-based intervention assessment form.
-				Random r = new Random();
 				for (int i = 0; i < items.size(); i++) {
 					JLabel label = items.get(i);
 
@@ -105,37 +106,22 @@ public class InstructorDisplay extends JPanel implements MouseListener {
 						fileLocation.mkdirs();
 					}
 
-					int rand;
 					switch (type) {
-
+					// this has been left in incase there is a change to the requirements of each course moving forwards
 					case "Re-certification":
-						rand = r.nextInt(7) + 1;
-						exportResource("presentation/Re-Certification - Presentation Feedback.docx", fileLocation,
-								label.getText() + " ~ Presentation Feedback");
-						exportResource("abass/" + rand + ".docx", fileLocation,
-								label.getText() + " ~ Audit-based Assessment (" + getAuditName(rand) + ")");
-						exportResource("record/Blended Learning Record Sheet.docx", fileLocation,
+						exportResource("record/General - Record Sheet V1.docx", fileLocation,
 								label.getText() + " ~ Record Sheet");
 						break;
 					case "Assessment Day":
-						rand = r.nextInt(7) + 1;
-						exportResource("presentation/Presentation Feedback.docx", fileLocation,
-								label.getText() + " ~ Presentation Feedback");
-						exportResource("abass/" + rand + ".docx", fileLocation,
-								label.getText() + " ~ Audit-based Assessment (" + getAuditName(rand) + ")");
-						exportResource("record/Blended Learning Record Sheet.docx", fileLocation,
+						exportResource("record/General - Record Sheet V1.docx", fileLocation,
 								label.getText() + " ~ Record Sheet");
 						break;
-					case "Instructor - (M1)":
-						exportResource("presentation/Instructor Presentation feedback (day 1).docx", fileLocation,
-								label.getText() + " ~ Presentation Feedback");
-						exportResource("pi/Proactive Working Practices.docx", fileLocation,
-								label.getText() + " ~ Audit-based Assessment");
-						exportResource("record/Blended Learning Record Sheet (Instructor Module 1).docx", fileLocation,
+					case "Instructor":
+						exportResource("record/General - Record Sheet V1.docx", fileLocation,
 								label.getText() + " ~ Record Sheet");
 						break;
-					case "Instructor - (M2)":
-						exportResource("record/Blended Learning Record Sheet (Instructor Module 2).docx", fileLocation,
+					case "Principal Instructor":
+						exportResource("record/General - Record Sheet V1.docx", fileLocation,
 								label.getText() + " ~ Record Sheet");
 						break;
 					default:
@@ -162,6 +148,16 @@ public class InstructorDisplay extends JPanel implements MouseListener {
 				repaint();
 
 			}
+
+			private void createPresentationFolder(String generalFileLocation) {
+
+				File absoluteFileLocation = new File(generalFileLocation + "/presentations");
+				if(!absoluteFileLocation.exists()){
+					absoluteFileLocation.mkdir();
+				}
+		
+			}
+			
 		});
 		thread.start();
 

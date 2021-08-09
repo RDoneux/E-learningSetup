@@ -57,7 +57,7 @@ public class CourseSelector extends JPanel implements ActionListener {
 		upload.setPreferredSize(new Dimension(150, 25));
 		upload.addActionListener(this);
 
-		String courseTypes[] = { "Assessment Day", "Re-certification", "Instructor - (M1)", "Instructor - (M2)" };
+		String courseTypes[] = { "Re-certification", "Assessment Day", "Instructor", "Principal Instructor" };
 
 		courseType = new JComboBox<String>(courseTypes);
 		courseType.setFont(new Font("lucida Console", Font.PLAIN, 14));
